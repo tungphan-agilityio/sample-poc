@@ -18,14 +18,16 @@ class ThirdActivity : AppCompatActivity() {
     }
 
     private fun handleComplete() {
-        val startActivity = AuthenticationManager.getInstance().startActivity
-        startActivity?.let {
-            val intent = Intent(it, it.javaClass).apply {
-                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        AuthenticationManager.getInstance().also {
+            val startActivity = AuthenticationManager.getInstance().startActivity
+            startActivity?.let { activity ->
+                val intent = Intent(activity, activity.javaClass).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                }
+                activity.startActivity(intent)
             }
-            it.startActivity(intent)
+            it.onOnboardingCompleted?.invoke(RegistrationData())
+            it.cleanUp()
         }
-        AuthenticationManager.getInstance().onOnboardingCompleted?.invoke(RegistrationData())
-        AuthenticationManager.getInstance().cleanUp()
     }
 }
