@@ -9,7 +9,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
 import agility.tungphan.poc.myapp.ui.theme.MyApplicationTheme
-import agility.tungphan.poc.mylibrary.IntroActivity
+import agility.tungphan.poc.mylibrary.AuthenticationManager
 import android.app.Activity
 import android.content.Intent
 import android.util.Log
@@ -55,7 +55,19 @@ class MainActivity : ComponentActivity() {
                         verticalArrangement = Arrangement.Center
                     ) {
                         Button(onClick = {
-                            val intent = Intent(this@MainActivity, IntroActivity::class.java)
+                            AuthenticationManager.getInstance().register(onOnboardingCompleted = {
+                                Log.d("----", "onOnboardingCompleted UserID: ${it.userId}")
+
+                                // Handle registration completed.
+                                val intent = Intent(this@MainActivity, MainActivity::class.java).apply {
+                                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                }
+                                startActivity(intent)
+                            }, onLoginCompleted = {
+                                Log.d("----", "onLoginCompleted")
+                            })
+                            AuthenticationManager.getInstance().startOnboarding(this@MainActivity)
+//                            val intent = Intent(this@MainActivity, IntroActivity::class.java)
                             intent.putExtra("requestCode", "SomeUniqueID")
                             startForResult.launch(intent)
                         }) {

@@ -6,6 +6,19 @@
         android:targetSdkVersion="34" />
 
     <application android:allowBackup="true">
+        <activity
+            android:theme="@style/Theme.AppCompat"
+            android:name="agility.tungphan.poc.mylibrary.ui.ThirdActivity"
+            android:exported="false" />
+        <activity
+            android:theme="@style/Theme.AppCompat"
+            android:name="agility.tungphan.poc.mylibrary.ui.SecondActivity"
+            android:exported="false" />
+        <activity
+            android:theme="@style/Theme.AppCompat"
+            android:name="agility.tungphan.poc.mylibrary.ui.FirstActivity"
+            android:exported="false" />
         <activity android:name="agility.tungphan.poc.mylibrary.IntroActivity" />
     </application>
+
 </manifest>
