@@ -59,7 +59,7 @@ class MainActivity : ComponentActivity() {
                                 Log.d("----", "onOnboardingCompleted UserID: ${it.userId}")
 
                                 // Handle registration completed.
-                                val intent = Intent(this@MainActivity, MainActivity::class.java).apply {
+                                val intent = Intent(this@MainActivity, DashBoardActivity::class.java).apply {
                                     flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                 }
                                 startActivity(intent)

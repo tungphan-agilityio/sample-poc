@@ -21,6 +21,7 @@ class AuthenticationManager private constructor() {
 
     internal var onOnboardingCompleted: ((RegistrationData) -> Unit)? = null
     internal var onLoginCompleted: (() -> Unit)? = null
+    internal var startActivity: Activity? = null
 
     fun register(onOnboardingCompleted: ((RegistrationData) -> Unit)? = null, onLoginCompleted: (() -> Unit)? = null) {
         this.onOnboardingCompleted = onOnboardingCompleted
@@ -28,7 +29,13 @@ class AuthenticationManager private constructor() {
     }
 
     fun startOnboarding(activity: Activity) {
+        startActivity = activity;
         activity.startActivity(Intent(activity, FirstActivity::class.java))
-//        activity.startActivityForResult(Intent(activity, FirstActivity::class.java), 1)
+    }
+
+    fun cleanUp() {
+        this.startActivity = null
+        this.onLoginCompleted = null
+        this.onOnboardingCompleted = null
     }
 }
