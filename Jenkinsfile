@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                 echo "TAG_NAME is " + ${env.TAG_NAME}
                 echo 'Build stage'
             }
         }
