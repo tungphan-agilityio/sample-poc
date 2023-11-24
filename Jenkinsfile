@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        GIT_TAG = sh(returnStdout: true, script: 'git describe --always').trim()
+        TAG_NAME = sh(returnStdout: true, script: 'git describe --always').trim()
     }
 
     stages {
