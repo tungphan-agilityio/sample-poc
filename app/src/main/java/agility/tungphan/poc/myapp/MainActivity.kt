@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(TAG, "onCreate: ")
+        Log.d(TAG, "onCreate: 1234")
         setContent {
             MyApplicationTheme {
                 // A surface container using the 'background' color from the theme
